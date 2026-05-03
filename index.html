@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>¿Tu cuerpo te está avisando? — Emiliano Roco</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #00ABAB;
+    --teal-dark: #008080;
+    --teal-lt: rgba(0,171,171,0.08);
+    --negro: #0F0F0F;
+    --gris-osc: #F5F5F5;
+    --gris-med: #EBEBEB;
+    --gris: #888;
+    --blanco: #0F0F0F;
+    --rojo: #C0392B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    background: #FFFFFF;
+    color: #0F0F0F;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    padding: 20px 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .logo-e { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 22px; color: var(--teal); line-height: 1; }
+  .logo-r { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 22px; color: #0F0F0F; line-height: 1; }
+
+  .header-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--teal);
+    text-transform: uppercase;
+    border: 1px solid var(--teal);
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 32px 24px 24px;
+    border-bottom: 1px solid #1E1E1E;
+  }
+
+  .hero-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(36px, 8vw, 52px);
+    line-height: 1;
+    color: var(--blanco);
+    margin-bottom: 14px;
+  }
+
+  .hero h1 span { color: var(--teal); }
+
+  .hero-sub {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    max-width: 420px;
+  }
+
+  /* ── PROGRESS ── */
+  .progress-wrap {
+    padding: 20px 24px;
+    background: #F0F0F0;
+    border-bottom: 1px solid #E0E0E0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .progress-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #666;
+    text-transform: uppercase;
+  }
+
+  .progress-count {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--teal);
+    line-height: 1;
+    transition: all 0.3s;
+  }
+
+  .progress-count span { color: #444; font-size: 16px; }
+
+  .progress-bar-bg {
+    width: 100%;
+    height: 4px;
+    background: #DEDEDE;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--teal);
+    border-radius: 2px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0%;
+  }
+
+  /* ── SECCIONES ── */
+  .seccion {
+    padding: 28px 24px 8px;
+  }
+
+  .seccion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .seccion-num-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .seccion-num {
+    width: 24px;
+    height: 24px;
+    background: var(--teal);
+    color: var(--negro);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .seccion-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #0F0F0F;
+  }
+
+  .seccion-desc {
+    font-size: 11px;
+    color: var(--gris);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+  }
+
+  .seccion-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--teal) 0%, transparent 100%);
+    margin-bottom: 16px;
+    opacity: 0.4;
+  }
+
+  /* ── ITEMS ── */
+  .items-wrap {
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: #FAFAFA;
+    border: 1px solid #E8E8E8;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .item:active { transform: scale(0.98); }
+
+  .item.checked {
+    background: var(--teal-lt);
+    border-color: var(--teal);
+  }
+
+  .checkbox {
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid #CCCCCC;
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+  }
+
+  .item.checked .checkbox {
+    background: var(--teal);
+    border-color: var(--teal);
+  }
+
+  .checkbox svg {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .item.checked .checkbox svg {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .item-content { flex: 1; }
+
+  .item-titulo {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #0F0F0F;
+    line-height: 1.3;
+    margin-bottom: 3px;
+    transition: color 0.2s;
+  }
+
+  .item.checked .item-titulo { color: var(--teal); }
+
+  .item-desc {
+    font-size: 12px;
+    color: var(--gris);
+    line-height: 1.4;
+  }
+
+  /* ── DIVISOR ── */
+  .divisor {
+    margin: 8px 24px;
+    height: 1px;
+    background: #E8E8E8;
+  }
+
+  /* ── DIAGNÓSTICO ── */
+  .diagnostico-wrap {
+    padding: 24px;
+    margin-top: 8px;
+  }
+
+  .diagnostico-box {
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #E0E0E0;
+    background: #F5F5F5;
+    transition: all 0.4s ease;
+  }
+
+  .diag-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 8px;
+  }
+
+  .diag-mensaje {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.3;
+    color: #0F0F0F;
+    margin-bottom: 8px;
+    transition: all 0.3s;
+    min-height: 48px;
+  }
+
+  .diag-sub {
+    font-size: 13px;
+    color: var(--gris);
+    line-height: 1.5;
+    transition: all 0.3s;
+    min-height: 40px;
+  }
+
+  /* ── CTA ── */
+  .cta-wrap {
+    padding: 0 24px 48px;
+    display: none;
+  }
+
+  .cta-wrap.visible { display: block; }
+
+  .cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 20px;
+    background: var(--teal);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    margin-top: 16px;
+  }
+
+  .cta-btn:active { transform: scale(0.98); background: var(--teal-dark); }
+
+  .cta-texto {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--negro);
+    text-align: left;
+    line-height: 1.2;
+  }
+
+  .cta-arrow {
+    width: 32px;
+    height: 32px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 24px;
+    border-top: 1px solid #E8E8E8;
+    text-align: center;
+  }
+
+  .footer-txt {
+    font-size: 11px;
+    color: #AAAAAA;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── ANIMACIÓN ENTRADA ── */
+  .item {
+    animation: fadeUp 0.3s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .items-wrap .item:nth-child(1)  { animation-delay: 0.05s; }
+  .items-wrap .item:nth-child(2)  { animation-delay: 0.10s; }
+  .items-wrap .item:nth-child(3)  { animation-delay: 0.15s; }
+  .items-wrap .item:nth-child(4)  { animation-delay: 0.20s; }
+  .items-wrap .item:nth-child(5)  { animation-delay: 0.25s; }
+  .items-wrap .item:nth-child(6)  { animation-delay: 0.30s; }
+  .items-wrap .item:nth-child(7)  { animation-delay: 0.35s; }
+  .items-wrap .item:nth-child(8)  { animation-delay: 0.40s; }
+
+  /* Pulso en el count cuando cambia */
+  @keyframes pulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  .pulse { animation: pulse 0.3s ease; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">
+    <span class="logo-e">E</span><span class="logo-r">R</span>
+  </div>
+  <div class="header-tag">Checklist</div>
+</div>
+
+<div class="hero">
+  <div class="hero-label">Testosterona baja</div>
+  <h1>¿Tu cuerpo te<br>está <span>avisando</span>?</h1>
+  <p class="hero-sub">Marcá todo lo que reconocés en vos. Dos minutos. Sin vueltas.</p>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-top">
+    <div class="progress-label">Síntomas + hábitos marcados</div>
+    <div class="progress-count" id="count">0 <span>/ 15</span></div>
+  </div>
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progressBar"></div>
+  </div>
+</div>
+
+<!-- SECCIÓN 1 -->
+<div class="seccion">
+  <div class="seccion-header">
+    <div class="seccion-num-wrap">
+      <div class="seccion-num">1</div>
+      <div class="seccion-title">Síntomas</div>
+    </div>
+    <div class="seccion-desc">Lo que sentís en el cuerpo</div>
+  </div>
+  <div class="seccion-line"></div>
+</div>
+
+<div class="items-wrap" id="sintomas">
+  <div class="item" onclick="toggle(this)">
+    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-content">
+      <div class="item-titulo">Cansancio constante</div>
+      <div class="item-desc">Dormís y seguís agotado. Arrancás el día sin energía.</div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this)">
+    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-content">
+      <div class="item-titulo">Acumulás grasa en la panza</div>
+      <div class="item-desc">Aunque comés parecido a antes. Sobre todo zona abdominal.</div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this)">
+    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-content">
+      <div class="item-titulo">Menos libido</div>
+      <div class="item-desc">El deseo bajó. Ya no es lo que era.</div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this)">
+    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-content">
+      <div class="item-titulo">Mal humor o irritabilidad</div>
+      <div class="item-desc">Poca paciencia. Te pesa más todo que antes.</div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this)">
+    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-content">
+      <div class="item-titulo">Pérdida de músculo</div>
+      <div class="item-desc">Notás que perdiste fuerza o volumen aunque entrenes.</div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this)">
+    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-content">
+      <div class="item-titulo">Niebla mental</div>
+      <div class="item-desc">Falta de claridad. Cuesta tomar decisiones. Bajó la concentración.</div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this)">
+    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-content">
+      <div class="item-titulo">Motivación por el piso</div>
+      <div class="item-desc">Cosas que antes te movían, ya no te generan nada.</div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this)">
+    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-content">
+      <div class="item-titulo">Sueño que no repara</div>
+      <div class="item-desc">Dormís horas pero no descansás. Te levantás igual de pesado.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divisor"></div>
+
+<!-- SECCIÓN 2 -->
+<div class="seccion">
+  <div class="seccion-header">
+    <div class="seccion-num-wrap">
+      <div class="seccion-num">2</div>
+      <div class="seccion-title">Hábitos</div>
+    </div>
+    <div class="seccion-desc">Lo que lo está generando</div>
+  </div>
+  <div class="seccion-line"></div>
+</div>
+
+<div class="items-wrap" id="habitos">
+  <div class="item" onclick="toggle(this)">
+    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-content">
+      <div class="item-titulo">Dormís 5-6 horas o menos</div>
+      <div class="item-desc">La testosterona se produce durante el sueño profundo. Sin descanso, no hay hormona.</div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this)">
+    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-content">
+      <div class="item-titulo">Estrés crónico sin manejo</div>
+      <div class="item-desc">El cortisol alto suprime directamente la testosterona. No es un mito.</div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this)">
+    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-content">
+      <div class="item-titulo">Sedentarismo la mayor parte del día</div>
+      <div class="item-desc">El movimiento diario activa señales hormonales. Estar quieto las apaga.</div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this)">
+    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-content">
+      <div class="item-titulo">No entrenás fuerza o lo hacés esporádico</div>
+      <div class="item-desc">El entrenamiento de grandes grupos musculares es el estímulo hormonal más potente que existe.</div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this)">
+    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-content">
+      <div class="item-titulo">Comés poco o salteás comidas</div>
+      <div class="item-desc">Déficit calórico crónico = cortisol en alza = testosterona en baja.</div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this)">
+    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-content">
+      <div class="item-titulo">Consumo alto de alcohol o procesados</div>
+      <div class="item-desc">Ambos elevan estrógeno, bajan testosterona e inflaman el sistema.</div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this)">
+    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-content">
+      <div class="item-titulo">Pasás todo el día sin luz solar</div>
+      <div class="item-desc">La vitamina D es precursora directa de testosterona. Casi todos los hombres con T baja están deficientes.</div>
+    </div>
+  </div>
+</div>
+
+<!-- DIAGNÓSTICO -->
+<div class="diagnostico-wrap">
+  <div class="diagnostico-box" id="diagBox">
+    <div class="diag-label">Tu diagnóstico</div>
+    <div class="diag-mensaje" id="diagMensaje">Marcá los que reconocés en vos para ver tu diagnóstico.</div>
+    <div class="diag-sub" id="diagSub">Cada marca cuenta. Sé honesto.</div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-wrap" id="ctaWrap">
+  <a class="cta-btn" id="ctaBtn" href="https://wa.me/5491136463349?text=Hola%20Emiliano%2C%20hice%20el%20checklist%20y%20quiero%20saber%20c%C3%B3mo%20mejorar%20mi%20situaci%C3%B3n." target="_blank">
+    <div class="cta-texto">¿Más de 5 marcados?<br>Hablemos. Tiene solución.</div>
+    <div class="cta-arrow">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </a>
+</div>
+
+<div class="footer">
+  <div class="footer-txt">Emiliano Roco · Coaching Fitness para Hombres Ocupados</div>
+</div>
+
+<script>
+  const TOTAL = 15;
+  let marcados = 0;
+
+  const diagnosticos = [
+    {
+      min: 0, max: 0,
+      mensaje: 'Marcá los que reconocés en vos para ver tu diagnóstico.',
+      sub: 'Cada marca cuenta. Sé honesto.',
+      color: '#F5F5F5',
+      border: '#E0E0E0'
+    },
+    {
+      min: 1, max: 3,
+      mensaje: 'Señales leves. Pero están ahí.',
+      sub: 'Tu cuerpo todavía responde bien. Con pequeños ajustes podés prevenir que esto avance. El mejor momento para actuar es ahora.',
+      color: '#EEF7EE',
+      border: '#AADDAA'
+    },
+    {
+      min: 4, max: 6,
+      mensaje: 'Zona de alerta. Tu cuerpo está hablando.',
+      sub: 'Varios síntomas presentes. No es casualidad y no es la edad. Es tu entorno hormonal. Tiene solución, pero necesita un plan concreto.',
+      color: '#F7F7EE',
+      border: '#CCCC88'
+    },
+    {
+      min: 7, max: 10,
+      mensaje: 'Zona crítica. Esto no se resuelve solo.',
+      sub: 'Lo que describís es un patrón hormonal claro. Cortisol alto, testosterona baja, cuerpo en modo supervivencia. Se puede revertir, pero necesitás estructura real.',
+      color: '#F7EEEE',
+      border: '#DD9999'
+    },
+    {
+      min: 11, max: 15,
+      mensaje: 'Tu cuerpo lleva tiempo pidiendo ayuda.',
+      sub: 'Con este nivel de señales, el cuerpo está en un estado de desgaste profundo. No es disciplina lo que falta. Es un sistema que funcione para tu vida. Hablemos.',
+      color: '#F7E8E8',
+      border: '#CC7777'
+    }
+  ];
+
+  function toggle(el) {
+    const checked = el.classList.toggle('checked');
+    marcados += checked ? 1 : -1;
+    actualizar();
+  }
+
+  function actualizar() {
+    // Count
+    const countEl = document.getElementById('count');
+    countEl.innerHTML = `${marcados} <span>/ ${TOTAL}</span>`;
+    countEl.classList.remove('pulse');
+    void countEl.offsetWidth;
+    countEl.classList.add('pulse');
+
+    // Progress bar
+    document.getElementById('progressBar').style.width = `${(marcados / TOTAL) * 100}%`;
+
+    // Diagnóstico
+    let diag = diagnosticos[0];
+    for (const d of diagnosticos) {
+      if (marcados >= d.min && marcados <= d.max) { diag = d; break; }
+    }
+    const box = document.getElementById('diagBox');
+    box.style.background = diag.color;
+    box.style.borderColor = diag.border;
+    document.getElementById('diagMensaje').textContent = diag.mensaje;
+    document.getElementById('diagSub').textContent = diag.sub;
+
+    // CTA
+    const ctaWrap = document.getElementById('ctaWrap');
+    if (marcados >= 5) {
+      ctaWrap.classList.add('visible');
+      // Scroll suave al CTA la primera vez
+      if (!ctaWrap.dataset.shown) {
+        ctaWrap.dataset.shown = '1';
+        setTimeout(() => ctaWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 300);
+      }
+    } else {
+      ctaWrap.classList.remove('visible');
+      delete ctaWrap.dataset.shown;
+    }
+  }
+</script>
+</body>
+</html>
