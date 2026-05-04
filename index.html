@@ -3,602 +3,822 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>¿Tu cuerpo te está avisando? — Emiliano Roco</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Diagnóstico Hormonal — Emiliano Roco</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --teal: #00ABAB;
-    --teal-dark: #008080;
-    --teal-lt: rgba(0,171,171,0.08);
-    --negro: #0F0F0F;
-    --gris-osc: #F5F5F5;
-    --gris-med: #EBEBEB;
-    --gris: #888;
-    --blanco: #0F0F0F;
-    --rojo: #C0392B;
-  }
+:root {
+  --teal: #00ABAB;
+  --teal-dk: #007F7F;
+  --teal-lt: rgba(0,171,171,0.09);
+  --teal-mid: rgba(0,171,171,0.18);
+  --negro: #0C0C0C;
+  --surface: #F6F6F6;
+  --surface2: #EFEFEF;
+  --border: #E2E2E2;
+  --border-dk: #CACACA;
+  --txt: #111111;
+  --txt-mid: #555555;
+  --txt-lt: #999999;
+  --amarillo: #F5A623;
+  --rojo: #D0021B;
+  --verde: #00A878;
+}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-  body {
-    background: #FFFFFF;
-    color: #0F0F0F;
-    font-family: 'Barlow', sans-serif;
-    font-weight: 300;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+body {
+  background: #fff;
+  color: var(--txt);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 400;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-  /* ── HEADER ── */
-  .header {
-    padding: 20px 24px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+/* ── HEADER ── */
+.hdr {
+  background: var(--negro);
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.logo { display: flex; align-items: center; gap: 1px; }
+.logo-e { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 20px; color: var(--teal); }
+.logo-r { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 20px; color: #fff; }
+.hdr-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--teal); border: 1px solid var(--teal);
+  padding: 3px 8px; border-radius: 3px;
+}
 
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-  }
-  .logo-e { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 22px; color: var(--teal); line-height: 1; }
-  .logo-r { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 22px; color: #0F0F0F; line-height: 1; }
+/* ── HERO ── */
+.hero {
+  background: var(--negro);
+  padding: 28px 22px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal) 0%, transparent 100%);
+}
+.hero-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 10px;
+}
+.hero h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: clamp(30px, 7vw, 46px);
+  line-height: 1.05;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.hero h1 em { color: var(--teal); font-style: normal; }
+.hero-sub {
+  font-size: 13.5px; font-weight: 300;
+  color: #aaa; line-height: 1.6; max-width: 380px;
+}
+.hero-sub strong { color: #ddd; font-weight: 500; }
 
-  .header-tag {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    color: var(--teal);
-    text-transform: uppercase;
-    border: 1px solid var(--teal);
-    padding: 3px 8px;
-    border-radius: 2px;
-  }
+/* ── PROGRESS STICKY ── */
+.prog-wrap {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 14px 22px 12px;
+  position: sticky;
+  top: 49px;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.prog-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.prog-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--txt-lt);
+}
+.prog-nums {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 20px;
+  color: var(--teal); line-height: 1;
+  transition: all 0.25s;
+}
+.prog-nums span { color: #ccc; font-size: 14px; font-weight: 600; }
+.prog-bg {
+  width: 100%; height: 5px;
+  background: var(--surface2);
+  border-radius: 99px; overflow: hidden;
+}
+.prog-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal) 0%, var(--teal-dk) 100%);
+  border-radius: 99px;
+  transition: width 0.45s cubic-bezier(0.4,0,0.2,1);
+  width: 0%;
+}
 
-  /* ── HERO ── */
-  .hero {
-    padding: 32px 24px 24px;
-    border-bottom: 1px solid #1E1E1E;
-  }
+/* ── SECCIÓN ── */
+.seccion {
+  padding: 26px 22px 4px;
+}
+.sec-hdr {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.sec-num {
+  width: 26px; height: 26px;
+  background: var(--negro);
+  color: var(--teal);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 5px; flex-shrink: 0;
+}
+.sec-info { flex: 1; }
+.sec-titulo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--txt);
+}
+.sec-desc {
+  font-size: 11px; color: var(--txt-lt);
+  margin-top: 1px;
+}
+.sec-line {
+  height: 1px;
+  background: linear-gradient(90deg, var(--teal) 0%, transparent 60%);
+  margin-bottom: 14px;
+  opacity: 0.25;
+}
 
-  .hero-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    color: var(--teal);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
+/* ── ITEMS ── */
+.items { padding: 0 22px; display: flex; flex-direction: column; gap: 7px; margin-bottom: 6px; }
 
-  .hero h1 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: clamp(36px, 8vw, 52px);
-    line-height: 1;
-    color: var(--blanco);
-    margin-bottom: 14px;
-  }
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 14px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  -webkit-user-select: none; user-select: none;
+  animation: fadeUp 0.3s ease both;
+}
+.item:active { transform: scale(0.985); }
+.item.on {
+  background: var(--teal-lt);
+  border-color: var(--teal);
+}
 
-  .hero h1 span { color: var(--teal); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.items .item:nth-child(1)  { animation-delay: 0.04s; }
+.items .item:nth-child(2)  { animation-delay: 0.08s; }
+.items .item:nth-child(3)  { animation-delay: 0.12s; }
+.items .item:nth-child(4)  { animation-delay: 0.16s; }
+.items .item:nth-child(5)  { animation-delay: 0.20s; }
+.items .item:nth-child(6)  { animation-delay: 0.24s; }
+.items .item:nth-child(7)  { animation-delay: 0.28s; }
+.items .item:nth-child(8)  { animation-delay: 0.32s; }
+.items .item:nth-child(9)  { animation-delay: 0.36s; }
+.items .item:nth-child(10) { animation-delay: 0.40s; }
 
-  .hero-sub {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.6;
-    max-width: 420px;
-  }
+.chk {
+  width: 21px; height: 21px;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.18s;
+  margin-top: 1px;
+}
+.item.on .chk { background: var(--teal); border-color: var(--teal); }
+.chk svg { opacity: 0; transform: scale(0.4); transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1); }
+.item.on .chk svg { opacity: 1; transform: scale(1); }
 
-  /* ── PROGRESS ── */
-  .progress-wrap {
-    padding: 20px 24px;
-    background: #F0F0F0;
-    border-bottom: 1px solid #E0E0E0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+.item-body { flex: 1; }
+.item-t {
+  font-weight: 500; font-size: 13.5px;
+  color: var(--txt); line-height: 1.3;
+  margin-bottom: 2px;
+  transition: color 0.18s;
+}
+.item.on .item-t { color: var(--teal-dk); }
+.item-d { font-size: 11.5px; color: var(--txt-lt); line-height: 1.4; font-weight: 300; }
 
-  .progress-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
+/* ── INTENSIDAD ── */
+.intens-wrap {
+  display: none;
+  margin-top: 10px;
+  gap: 6px;
+}
+.item.on .intens-wrap { display: flex; }
+.intens-label { font-size: 10px; color: var(--txt-lt); margin-bottom: 4px; font-weight: 500; }
+.intens-btn {
+  flex: 1; padding: 6px 4px;
+  font-size: 11px; font-weight: 600;
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: 0.05em;
+  border: 1.5px solid var(--border-dk);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--txt-mid);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+}
+.intens-btn.sel-leve  { background: #E8F8F4; border-color: var(--verde); color: var(--verde); }
+.intens-btn.sel-mod   { background: #FFF8E6; border-color: var(--amarillo); color: #c47d00; }
+.intens-btn.sel-fuerte{ background: #FDECEA; border-color: var(--rojo); color: var(--rojo); }
 
-  .progress-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: #666;
-    text-transform: uppercase;
-  }
+/* ── DIVISOR ── */
+.div { margin: 6px 22px; height: 1px; background: var(--border); }
 
-  .progress-count {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--teal);
-    line-height: 1;
-    transition: all 0.3s;
-  }
+/* ── DIAGNÓSTICO ── */
+.diag-wrap { padding: 22px; }
+.diag-box {
+  border-radius: 14px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  overflow: hidden;
+  transition: all 0.35s ease;
+}
+.diag-top {
+  padding: 18px 18px 14px;
+}
+.diag-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--txt-lt); margin-bottom: 8px;
+}
+.diag-nivel {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 22px;
+  line-height: 1; margin-bottom: 10px;
+  transition: all 0.3s;
+}
+.diag-nivel .dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+.diag-msg {
+  font-size: 14px; font-weight: 400;
+  color: var(--txt-mid); line-height: 1.6;
+  transition: all 0.3s;
+  min-height: 44px;
+}
+.diag-bar-wrap {
+  padding: 0 18px 16px;
+}
+.diag-bar-bg {
+  width: 100%; height: 8px;
+  background: var(--surface2);
+  border-radius: 99px; overflow: hidden;
+  margin-bottom: 6px;
+}
+.diag-bar-fill {
+  height: 100%; border-radius: 99px;
+  transition: width 0.5s cubic-bezier(0.4,0,0.2,1), background 0.4s;
+  width: 0%;
+  background: var(--teal);
+}
+.diag-bar-labels {
+  display: flex; justify-content: space-between;
+  font-size: 10px; color: var(--txt-lt);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; letter-spacing: 0.05em;
+}
+.diag-areas {
+  padding: 0 18px 18px;
+  display: none;
+}
+.diag-areas.visible { display: block; }
+.diag-areas-title {
+  font-size: 11px; font-weight: 600;
+  color: var(--txt-lt); text-transform: uppercase;
+  letter-spacing: 0.1em; margin-bottom: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+.area-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.area-tag {
+  font-size: 11px; font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: var(--surface2);
+  color: var(--txt-mid);
+  border: 1px solid var(--border-dk);
+}
+.area-tag.alta { background: #FDECEA; color: var(--rojo); border-color: #f5c0bb; }
+.area-tag.media { background: #FFF8E6; color: #c47d00; border-color: #f5d98a; }
 
-  .progress-count span { color: #444; font-size: 16px; }
+/* ── ACCION ── */
+.accion-wrap {
+  padding: 0 22px 16px;
+  display: none;
+}
+.accion-wrap.visible { display: block; }
+.accion-box {
+  background: var(--negro);
+  border-radius: 12px;
+  padding: 20px 18px;
+  position: relative;
+  overflow: hidden;
+}
+.accion-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--teal);
+}
+.accion-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 8px;
+}
+.accion-titulo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 18px;
+  color: #fff; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.accion-txt {
+  font-size: 13px; font-weight: 300;
+  color: #aaa; line-height: 1.6;
+  margin-bottom: 16px;
+}
+.accion-txt strong { color: #ddd; font-weight: 500; }
+.accion-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--teal);
+  border: none; border-radius: 9px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.accion-btn:active { background: var(--teal-dk); transform: scale(0.98); }
+.accion-btn-txt {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 15px;
+  color: var(--negro); text-align: left; line-height: 1.2;
+}
+.accion-btn-arrow {
+  width: 30px; height: 30px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
 
-  .progress-bar-bg {
-    width: 100%;
-    height: 4px;
-    background: #DEDEDE;
-    border-radius: 2px;
-    overflow: hidden;
-  }
+/* ── FOOTER ── */
+.footer {
+  padding: 22px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  margin-top: 8px;
+}
+.footer-txt { font-size: 11px; color: #bbb; }
 
-  .progress-bar-fill {
-    height: 100%;
-    background: var(--teal);
-    border-radius: 2px;
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    width: 0%;
-  }
+/* ── PULSE ANIM ── */
+@keyframes pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+.pulse { animation: pulse 0.28s ease; }
 
-  /* ── SECCIONES ── */
-  .seccion {
-    padding: 28px 24px 8px;
-  }
-
-  .seccion-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-  }
-
-  .seccion-num-wrap {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .seccion-num {
-    width: 24px;
-    height: 24px;
-    background: var(--teal);
-    color: var(--negro);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    flex-shrink: 0;
-  }
-
-  .seccion-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #0F0F0F;
-  }
-
-  .seccion-desc {
-    font-size: 11px;
-    color: var(--gris);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-  }
-
-  .seccion-line {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, var(--teal) 0%, transparent 100%);
-    margin-bottom: 16px;
-    opacity: 0.4;
-  }
-
-  /* ── ITEMS ── */
-  .items-wrap {
-    padding: 0 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-
-  .item {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 14px 16px;
-    background: #FAFAFA;
-    border: 1px solid #E8E8E8;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    -webkit-user-select: none;
-    user-select: none;
-  }
-
-  .item:active { transform: scale(0.98); }
-
-  .item.checked {
-    background: var(--teal-lt);
-    border-color: var(--teal);
-  }
-
-  .checkbox {
-    width: 20px;
-    height: 20px;
-    border: 1.5px solid #CCCCCC;
-    border-radius: 4px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-    margin-top: 1px;
-  }
-
-  .item.checked .checkbox {
-    background: var(--teal);
-    border-color: var(--teal);
-  }
-
-  .checkbox svg {
-    opacity: 0;
-    transform: scale(0.5);
-    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .item.checked .checkbox svg {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  .item-content { flex: 1; }
-
-  .item-titulo {
-    font-family: 'Barlow', sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    color: #0F0F0F;
-    line-height: 1.3;
-    margin-bottom: 3px;
-    transition: color 0.2s;
-  }
-
-  .item.checked .item-titulo { color: var(--teal); }
-
-  .item-desc {
-    font-size: 12px;
-    color: var(--gris);
-    line-height: 1.4;
-  }
-
-  /* ── DIVISOR ── */
-  .divisor {
-    margin: 8px 24px;
-    height: 1px;
-    background: #E8E8E8;
-  }
-
-  /* ── DIAGNÓSTICO ── */
-  .diagnostico-wrap {
-    padding: 24px;
-    margin-top: 8px;
-  }
-
-  .diagnostico-box {
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #E0E0E0;
-    background: #F5F5F5;
-    transition: all 0.4s ease;
-  }
-
-  .diag-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gris);
-    margin-bottom: 8px;
-  }
-
-  .diag-mensaje {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 1.3;
-    color: #0F0F0F;
-    margin-bottom: 8px;
-    transition: all 0.3s;
-    min-height: 48px;
-  }
-
-  .diag-sub {
-    font-size: 13px;
-    color: var(--gris);
-    line-height: 1.5;
-    transition: all 0.3s;
-    min-height: 40px;
-  }
-
-  /* ── CTA ── */
-  .cta-wrap {
-    padding: 0 24px 48px;
-    display: none;
-  }
-
-  .cta-wrap.visible { display: block; }
-
-  .cta-btn {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 18px 20px;
-    background: var(--teal);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s;
-    margin-top: 16px;
-  }
-
-  .cta-btn:active { transform: scale(0.98); background: var(--teal-dark); }
-
-  .cta-texto {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    color: var(--negro);
-    text-align: left;
-    line-height: 1.2;
-  }
-
-  .cta-arrow {
-    width: 32px;
-    height: 32px;
-    background: rgba(0,0,0,0.15);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  /* ── FOOTER ── */
-  .footer {
-    padding: 24px;
-    border-top: 1px solid #E8E8E8;
-    text-align: center;
-  }
-
-  .footer-txt {
-    font-size: 11px;
-    color: #AAAAAA;
-    letter-spacing: 0.05em;
-  }
-
-  /* ── ANIMACIÓN ENTRADA ── */
-  .item {
-    animation: fadeUp 0.3s ease both;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .items-wrap .item:nth-child(1)  { animation-delay: 0.05s; }
-  .items-wrap .item:nth-child(2)  { animation-delay: 0.10s; }
-  .items-wrap .item:nth-child(3)  { animation-delay: 0.15s; }
-  .items-wrap .item:nth-child(4)  { animation-delay: 0.20s; }
-  .items-wrap .item:nth-child(5)  { animation-delay: 0.25s; }
-  .items-wrap .item:nth-child(6)  { animation-delay: 0.30s; }
-  .items-wrap .item:nth-child(7)  { animation-delay: 0.35s; }
-  .items-wrap .item:nth-child(8)  { animation-delay: 0.40s; }
-
-  /* Pulso en el count cuando cambia */
-  @keyframes pulse {
-    0%   { transform: scale(1); }
-    50%  { transform: scale(1.2); }
-    100% { transform: scale(1); }
-  }
-  .pulse { animation: pulse 0.3s ease; }
+/* ── SCROLL REVEAL ── */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.4s ease, transform 0.4s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="logo">
-    <span class="logo-e">E</span><span class="logo-r">R</span>
-  </div>
-  <div class="header-tag">Checklist</div>
-</div>
+<header class="hdr">
+  <div class="logo"><span class="logo-e">E</span><span class="logo-r">R</span></div>
+  <div class="hdr-tag">Diagnóstico hormonal</div>
+</header>
 
 <div class="hero">
-  <div class="hero-label">Testosterona baja</div>
-  <h1>¿Tu cuerpo te<br>está <span>avisando</span>?</h1>
-  <p class="hero-sub">Marcá todo lo que reconocés en vos. Dos minutos. Sin vueltas.</p>
+  <div class="hero-eyebrow">Diagnóstico hormonal · Hombres +30</div>
+  <h1>¿Cómo está tu nivel<br>de <em>Testosterona</em>?</h1>
+  <p class="hero-sub">Diagnóstico en 2 minutos. <strong>El resultado aparece en tiempo real</strong> mientras completás.</p>
 </div>
 
-<div class="progress-wrap">
-  <div class="progress-top">
-    <div class="progress-label">Síntomas + hábitos marcados</div>
-    <div class="progress-count" id="count">0 <span>/ 15</span></div>
+<div class="prog-wrap">
+  <div class="prog-row">
+    <div class="prog-label">Indicadores marcados</div>
+    <div class="prog-nums" id="progNums">0 <span>/ 25</span></div>
   </div>
-  <div class="progress-bar-bg">
-    <div class="progress-bar-fill" id="progressBar"></div>
-  </div>
+  <div class="prog-bg"><div class="prog-fill" id="progFill"></div></div>
 </div>
 
-<!-- SECCIÓN 1 -->
-<div class="seccion">
-  <div class="seccion-header">
-    <div class="seccion-num-wrap">
-      <div class="seccion-num">1</div>
-      <div class="seccion-title">Síntomas</div>
+<!-- ══════════════ SECCIÓN 1 — ENERGÍA Y SUEÑO ══════════════ -->
+<div class="seccion reveal">
+  <div class="sec-hdr">
+    <div class="sec-num">1</div>
+    <div class="sec-info">
+      <div class="sec-titulo">Energía y sueño</div>
+      <div class="sec-desc">Cómo te sentís día a día</div>
     </div>
-    <div class="seccion-desc">Lo que sentís en el cuerpo</div>
   </div>
-  <div class="seccion-line"></div>
+  <div class="sec-line"></div>
 </div>
-
-<div class="items-wrap" id="sintomas">
-  <div class="item" onclick="toggle(this)">
-    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="item-content">
-      <div class="item-titulo">Cansancio constante</div>
-      <div class="item-desc">Dormís y seguís agotado. Arrancás el día sin energía.</div>
+<div class="items reveal">
+  <div class="item" onclick="toggle(this,'energia')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Me levanto cansado aunque haya dormido</div>
+      <div class="item-d">El descanso no repara. Amanecés igual de pesado que te dormiste.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">A veces</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Seguido</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Siempre</button>
+      </div>
     </div>
   </div>
-  <div class="item" onclick="toggle(this)">
-    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="item-content">
-      <div class="item-titulo">Acumulás grasa en la panza</div>
-      <div class="item-desc">Aunque comés parecido a antes. Sobre todo zona abdominal.</div>
+  <div class="item" onclick="toggle(this,'energia')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Caída de energía a media tarde</div>
+      <div class="item-d">Después del mediodía el cuerpo se apaga. Necesitás café o azúcar para seguir.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">A veces</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Seguido</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Siempre</button>
+      </div>
     </div>
   </div>
-  <div class="item" onclick="toggle(this)">
-    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="item-content">
-      <div class="item-titulo">Menos libido</div>
-      <div class="item-desc">El deseo bajó. Ya no es lo que era.</div>
+  <div class="item" onclick="toggle(this,'energia')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Dormís 5-6 horas o menos</div>
+      <div class="item-d">La testosterona se produce durante el sueño profundo. Sin descanso, no hay hormona.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">Rara vez</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Seguido</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Siempre</button>
+      </div>
     </div>
   </div>
-  <div class="item" onclick="toggle(this)">
-    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="item-content">
-      <div class="item-titulo">Mal humor o irritabilidad</div>
-      <div class="item-desc">Poca paciencia. Te pesa más todo que antes.</div>
-    </div>
-  </div>
-  <div class="item" onclick="toggle(this)">
-    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="item-content">
-      <div class="item-titulo">Pérdida de músculo</div>
-      <div class="item-desc">Notás que perdiste fuerza o volumen aunque entrenes.</div>
-    </div>
-  </div>
-  <div class="item" onclick="toggle(this)">
-    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="item-content">
-      <div class="item-titulo">Niebla mental</div>
-      <div class="item-desc">Falta de claridad. Cuesta tomar decisiones. Bajó la concentración.</div>
-    </div>
-  </div>
-  <div class="item" onclick="toggle(this)">
-    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="item-content">
-      <div class="item-titulo">Motivación por el piso</div>
-      <div class="item-desc">Cosas que antes te movían, ya no te generan nada.</div>
-    </div>
-  </div>
-  <div class="item" onclick="toggle(this)">
-    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="item-content">
-      <div class="item-titulo">Sueño que no repara</div>
-      <div class="item-desc">Dormís horas pero no descansás. Te levantás igual de pesado.</div>
+  <div class="item" onclick="toggle(this,'energia')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Te despertás en el medio de la noche</div>
+      <div class="item-d">El cortisol elevado interrumpe el sueño profundo en las horas críticas.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">A veces</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Seguido</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Siempre</button>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="divisor"></div>
+<div class="div"></div>
 
-<!-- SECCIÓN 2 -->
-<div class="seccion">
-  <div class="seccion-header">
-    <div class="seccion-num-wrap">
-      <div class="seccion-num">2</div>
-      <div class="seccion-title">Hábitos</div>
+<!-- ══════════════ SECCIÓN 2 — CUERPO Y FÍSICO ══════════════ -->
+<div class="seccion reveal">
+  <div class="sec-hdr">
+    <div class="sec-num">2</div>
+    <div class="sec-info">
+      <div class="sec-titulo">Cuerpo y físico</div>
+      <div class="sec-desc">Lo que notás en tu composición corporal</div>
     </div>
-    <div class="seccion-desc">Lo que lo está generando</div>
   </div>
-  <div class="seccion-line"></div>
+  <div class="sec-line"></div>
 </div>
-
-<div class="items-wrap" id="habitos">
-  <div class="item" onclick="toggle(this)">
-    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="item-content">
-      <div class="item-titulo">Dormís 5-6 horas o menos</div>
-      <div class="item-desc">La testosterona se produce durante el sueño profundo. Sin descanso, no hay hormona.</div>
+<div class="items reveal">
+  <div class="item" onclick="toggle(this,'cuerpo')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Acumulás grasa en la panza aunque comés igual</div>
+      <div class="item-d">La grasa abdominal es el primer indicador visible de desbalance hormonal.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">Poco</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Moderado</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Mucho</button>
+      </div>
     </div>
   </div>
-  <div class="item" onclick="toggle(this)">
-    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="item-content">
-      <div class="item-titulo">Estrés crónico sin manejo</div>
-      <div class="item-desc">El cortisol alto suprime directamente la testosterona. No es un mito.</div>
+  <div class="item" onclick="toggle(this,'cuerpo')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Perdiste músculo o tono aunque entrenes</div>
+      <div class="item-d">Sin testosterona adecuada, el cuerpo no puede mantener ni construir masa muscular.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">Poco</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Moderado</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Mucho</button>
+      </div>
     </div>
   </div>
-  <div class="item" onclick="toggle(this)">
-    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="item-content">
-      <div class="item-titulo">Sedentarismo la mayor parte del día</div>
-      <div class="item-desc">El movimiento diario activa señales hormonales. Estar quieto las apaga.</div>
+  <div class="item" onclick="toggle(this,'cuerpo')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Engordás aunque comés parecido a antes</div>
+      <div class="item-d">El metabolismo cambió. Lo que funcionaba a los 25 ya no aplica después de los 30.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">Un poco</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Sí, bastante</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Sí, mucho</button>
+      </div>
     </div>
   </div>
-  <div class="item" onclick="toggle(this)">
-    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="item-content">
-      <div class="item-titulo">No entrenás fuerza o lo hacés esporádico</div>
-      <div class="item-desc">El entrenamiento de grandes grupos musculares es el estímulo hormonal más potente que existe.</div>
+  <div class="item" onclick="toggle(this,'cuerpo')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Te sentís hinchado o con retención</div>
+      <div class="item-d">Inflamación crónica asociada al cortisol elevado y mala alimentación.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">A veces</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Seguido</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Siempre</button>
+      </div>
     </div>
-  </div>
-  <div class="item" onclick="toggle(this)">
-    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="item-content">
-      <div class="item-titulo">Comés poco o salteás comidas</div>
-      <div class="item-desc">Déficit calórico crónico = cortisol en alza = testosterona en baja.</div>
-    </div>
-  </div>
-  <div class="item" onclick="toggle(this)">
-    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="item-content">
-      <div class="item-titulo">Consumo alto de alcohol o procesados</div>
-      <div class="item-desc">Ambos elevan estrógeno, bajan testosterona e inflaman el sistema.</div>
-    </div>
-  </div>
-  <div class="item" onclick="toggle(this)">
-    <div class="checkbox"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="item-content">
-      <div class="item-titulo">Pasás todo el día sin luz solar</div>
-      <div class="item-desc">La vitamina D es precursora directa de testosterona. Casi todos los hombres con T baja están deficientes.</div>
-    </div>
-  </div>
-</div>
-
-<!-- DIAGNÓSTICO -->
-<div class="diagnostico-wrap">
-  <div class="diagnostico-box" id="diagBox">
-    <div class="diag-label">Tu diagnóstico</div>
-    <div class="diag-mensaje" id="diagMensaje">Marcá los que reconocés en vos para ver tu diagnóstico.</div>
-    <div class="diag-sub" id="diagSub">Cada marca cuenta. Sé honesto.</div>
   </div>
 </div>
 
-<!-- CTA -->
-<div class="cta-wrap" id="ctaWrap">
-  <a class="cta-btn" id="ctaBtn" href="https://wa.me/5491136463349?text=Hola%20Emiliano%2C%20hice%20el%20checklist%20y%20quiero%20saber%20c%C3%B3mo%20mejorar%20mi%20situaci%C3%B3n." target="_blank">
-    <div class="cta-texto">¿Más de 5 marcados?<br>Hablemos. Tiene solución.</div>
-    <div class="cta-arrow">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+<div class="div"></div>
+
+<!-- ══════════════ SECCIÓN 3 — ESTADO MENTAL Y EMOCIONAL ══════════════ -->
+<div class="seccion reveal">
+  <div class="sec-hdr">
+    <div class="sec-num">3</div>
+    <div class="sec-info">
+      <div class="sec-titulo">Estado mental y emocional</div>
+      <div class="sec-desc">Cómo afecta al ánimo y la cabeza</div>
     </div>
-  </a>
+  </div>
+  <div class="sec-line"></div>
+</div>
+<div class="items reveal">
+  <div class="item" onclick="toggle(this,'mental')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Irritabilidad o mal humor sin razón clara</div>
+      <div class="item-d">El desbalance hormonal afecta directamente el estado de ánimo. La familia lo nota antes que vos.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">A veces</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Seguido</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Siempre</button>
+      </div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this,'mental')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Niebla mental o dificultad para concentrarte</div>
+      <div class="item-d">Cuesta tomar decisiones. La claridad mental bajó. Tardás más en procesar lo mismo.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">Leve</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Moderada</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Fuerte</button>
+      </div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this,'mental')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Bajó la motivación general</div>
+      <div class="item-d">Cosas que antes te movían ya no generan nada. Sensación de indiferencia o apatía.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">Un poco</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Bastante</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Mucho</button>
+      </div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this,'mental')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Alto nivel de estrés sostenido</div>
+      <div class="item-d">Estrés crónico = cortisol crónico = testosterona suprimida. Es el ciclo más dañino.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">Moderado</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Alto</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Muy alto</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="div"></div>
+
+<!-- ══════════════ SECCIÓN 4 — LIBIDO E INTIMIDAD ══════════════ -->
+<div class="seccion reveal">
+  <div class="sec-hdr">
+    <div class="sec-num">4</div>
+    <div class="sec-info">
+      <div class="sec-titulo">Libido e intimidad</div>
+      <div class="sec-desc">Lo que no siempre se habla pero importa</div>
+    </div>
+  </div>
+  <div class="sec-line"></div>
+</div>
+<div class="items reveal">
+  <div class="item" onclick="toggle(this,'libido')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">El deseo sexual bajó notablemente</div>
+      <div class="item-d">No es la relación. No es la rutina. Es cortisol alto + testosterona baja.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">Un poco</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Bastante</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Mucho</button>
+      </div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this,'libido')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Evitás situaciones íntimas por cansancio o inseguridad</div>
+      <div class="item-d">El agotamiento físico y la vergüenza con el cuerpo generan distancia en la pareja.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">A veces</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Seguido</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Siempre</button>
+      </div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this,'libido')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Te sentís menos atractivo o seguro con tu cuerpo</div>
+      <div class="item-d">La identidad masculina se erosiona cuando el cuerpo no refleja quién sos.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">Un poco</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Bastante</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Mucho</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="div"></div>
+
+<!-- ══════════════ SECCIÓN 5 — HÁBITOS Y ESTILO DE VIDA ══════════════ -->
+<div class="seccion reveal">
+  <div class="sec-hdr">
+    <div class="sec-num">5</div>
+    <div class="sec-info">
+      <div class="sec-titulo">Hábitos y estilo de vida</div>
+      <div class="sec-desc">Lo que está generando el problema</div>
+    </div>
+  </div>
+  <div class="sec-line"></div>
+</div>
+<div class="items reveal">
+  <div class="item" onclick="toggle(this,'habitos')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">No entrenás fuerza o lo hacés de forma esporádica</div>
+      <div class="item-d">El entrenamiento de grandes grupos musculares es el estímulo hormonal más potente que existe.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">Esporádico</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Poco</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">No entreno</button>
+      </div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this,'habitos')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Pasás la mayor parte del día sentado</div>
+      <div class="item-d">El sedentarismo apaga señales hormonales que solo se activan con movimiento.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">Bastante</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Mucho</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Todo el día</button>
+      </div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this,'habitos')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Alimentación desordenada o por conveniencia</div>
+      <div class="item-d">Comés lo que hay, no lo que necesitás. Déficit de nutrientes clave para la producción hormonal.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">A veces</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Seguido</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Siempre</button>
+      </div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this,'habitos')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Consumo regular de alcohol o ultraprocesados</div>
+      <div class="item-d">Elevan el estrógeno, bajan testosterona e inflaman el sistema de forma crónica.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">Moderado</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Alto</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Muy alto</button>
+      </div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this,'habitos')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Poca o nula exposición al sol</div>
+      <div class="item-d">La vitamina D es precursora directa de testosterona. La mayoría de los hombres con T baja están deficientes.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">Poca</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Muy poca</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Casi nada</button>
+      </div>
+    </div>
+  </div>
+  <div class="item" onclick="toggle(this,'habitos')">
+    <div class="chk"><svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-t">Llegás destruido del trabajo y no tenés energía para nada más</div>
+      <div class="item-d">El agotamiento crónico indica que el cuerpo está operando en modo supervivencia. No en modo recuperación.</div>
+      <div class="intens-wrap">
+        <button class="intens-btn" onclick="setIntens(event,this,'leve')">A veces</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'mod')">Seguido</button>
+        <button class="intens-btn" onclick="setIntens(event,this,'fuerte')">Siempre</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ DIAGNÓSTICO ══════════════ -->
+<div class="diag-wrap reveal">
+  <div class="diag-box" id="diagBox">
+    <div class="diag-top">
+      <div class="diag-eyebrow">Tu diagnóstico</div>
+      <div class="diag-nivel" id="diagNivel">
+        <div class="dot" id="diagDot"></div>
+        <span id="diagNivelTxt">Esperando datos</span>
+      </div>
+      <div class="diag-msg" id="diagMsg">Completá las secciones para ver tu diagnóstico en tiempo real.</div>
+    </div>
+    <div class="diag-bar-wrap">
+      <div class="diag-bar-bg"><div class="diag-bar-fill" id="diagBar"></div></div>
+      <div class="diag-bar-labels">
+        <span>Sin señales</span>
+        <span>Moderado</span>
+        <span>Crítico</span>
+      </div>
+    </div>
+    <div class="diag-areas" id="diagAreas">
+      <div class="diag-areas-title">Áreas de mayor impacto</div>
+      <div class="area-tags" id="areaTags"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ ACCIÓN ══════════════ -->
+<div class="accion-wrap" id="accionWrap">
+  <div class="accion-box">
+    <div class="accion-eyebrow">Próximo paso</div>
+    <div class="accion-titulo" id="accionTitulo">Esto tiene solución.</div>
+    <div class="accion-txt" id="accionTxt">Si estás perdido y no sabés cómo empezar a revertirlo, podés agendar una <strong>llamada gratuita</strong> para conocer los primeros pasos con los principales hábitos para elevar la testosterona, según tu caso particular.</div>
+    <a class="accion-btn" href="https://calendly.com/emilianolorenzoroco/llamada-1-a-1" target="_blank">
+      <div class="accion-btn-txt">Agendar llamada gratuita<br><span style="font-weight:400;font-size:12px;opacity:0.8;">Sin compromiso · 20 minutos</span></div>
+      <div class="accion-btn-arrow">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <path d="M2.5 7.5H12.5M12.5 7.5L8.5 3.5M12.5 7.5L8.5 11.5" stroke="#0C0C0C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </a>
+  </div>
 </div>
 
 <div class="footer">
@@ -606,89 +826,149 @@
 </div>
 
 <script>
-  const TOTAL = 15;
-  let marcados = 0;
+const TOTAL = 25;
+let marcados = 0;
+const areaCount = { energia: 0, cuerpo: 0, mental: 0, libido: 0, habitos: 0 };
+const areaNames = {
+  energia: 'Energía y sueño',
+  cuerpo: 'Cuerpo y físico',
+  mental: 'Estado mental',
+  libido: 'Libido e intimidad',
+  habitos: 'Hábitos de vida'
+};
 
-  const diagnosticos = [
-    {
-      min: 0, max: 0,
-      mensaje: 'Marcá los que reconocés en vos para ver tu diagnóstico.',
-      sub: 'Cada marca cuenta. Sé honesto.',
-      color: '#F5F5F5',
-      border: '#E0E0E0'
-    },
-    {
-      min: 1, max: 3,
-      mensaje: 'Señales leves. Pero están ahí.',
-      sub: 'Tu cuerpo todavía responde bien. Con pequeños ajustes podés prevenir que esto avance. El mejor momento para actuar es ahora.',
-      color: '#EEF7EE',
-      border: '#AADDAA'
-    },
-    {
-      min: 4, max: 6,
-      mensaje: 'Zona de alerta. Tu cuerpo está hablando.',
-      sub: 'Varios síntomas presentes. No es casualidad y no es la edad. Es tu entorno hormonal. Tiene solución, pero necesita un plan concreto.',
-      color: '#F7F7EE',
-      border: '#CCCC88'
-    },
-    {
-      min: 7, max: 10,
-      mensaje: 'Zona crítica. Esto no se resuelve solo.',
-      sub: 'Lo que describís es un patrón hormonal claro. Cortisol alto, testosterona baja, cuerpo en modo supervivencia. Se puede revertir, pero necesitás estructura real.',
-      color: '#F7EEEE',
-      border: '#DD9999'
-    },
-    {
-      min: 11, max: 15,
-      mensaje: 'Tu cuerpo lleva tiempo pidiendo ayuda.',
-      sub: 'Con este nivel de señales, el cuerpo está en un estado de desgaste profundo. No es disciplina lo que falta. Es un sistema que funcione para tu vida. Hablemos.',
-      color: '#F7E8E8',
-      border: '#CC7777'
-    }
-  ];
+const niveles = [
+  {
+    min: 0, max: 0,
+    txt: 'Esperando datos',
+    msg: 'Completá las secciones para ver tu diagnóstico en tiempo real.',
+    color: '#ccc', barColor: '#ccc', barW: 0,
+    boxBg: '#F6F6F6', boxBorder: '#E2E2E2',
+    accion: false
+  },
+  {
+    min: 1, max: 5,
+    txt: 'Señales leves',
+    msg: 'Tu cuerpo muestra algunas señales tempranas. Todavía respondés bien, pero son indicadores que conviene atender antes de que avancen. El mejor momento para actuar es ahora, cuando el cuerpo todavía tiene margen.',
+    color: '#00A878', barColor: '#00A878', barW: 25,
+    boxBg: '#F0FAF7', boxBorder: '#A8DDD0',
+    accion: false
+  },
+  {
+    min: 6, max: 10,
+    txt: 'Nivel moderado',
+    msg: 'Varios sistemas están afectados. El patrón que describís no es casualidad ni es solo la edad — es un desbalance hormonal real con causa concreta. Tiene solución, pero necesita un plan estructurado para revertirlo.',
+    color: '#F5A623', barColor: '#F5A623', barW: 52,
+    boxBg: '#FFFBF0', boxBorder: '#F5D98A',
+    accion: true,
+    accionTitulo: 'Este nivel tiene solución concreta.',
+    accionTxt: 'Lo que describís es un patrón hormonal claro y reversible. Si estás perdido y no sabés cómo empezar a revertirlo, podés agendar una <strong>llamada gratuita</strong> para conocer los primeros pasos con los principales hábitos para elevar la testosterona, según tu caso particular.'
+  },
+  {
+    min: 11, max: 17,
+    txt: 'Nivel alto',
+    msg: 'El impacto es significativo en múltiples áreas. Energía, cuerpo, mente y vida íntima muestran señales claras de un desbalance hormonal avanzado. No es la edad. Es el entorno en el que vivís. Y eso se puede cambiar.',
+    color: '#E07B00', barColor: '#E07B00', barW: 72,
+    boxBg: '#FFF5E6', boxBorder: '#F5C070',
+    accion: true,
+    accionTitulo: 'Tu cuerpo está pidiendo un cambio real.',
+    accionTxt: 'Con este nivel de señales, seguir igual tiene un costo que va creciendo. Si estás perdido y no sabés cómo empezar a revertirlo, podés agendar una <strong>llamada gratuita</strong> para conocer los primeros pasos con los principales hábitos para elevar la testosterona, según tu caso particular.'
+  },
+  {
+    min: 18, max: 25,
+    txt: 'Nivel crítico',
+    msg: 'Tu cuerpo lleva tiempo en un estado de desgaste profundo. El nivel de señales que marcás indica un desbalance hormonal serio que afecta prácticamente todas las áreas de tu vida. No es falta de disciplina. Es que tu cuerpo necesita un sistema distinto al que tenés hoy.',
+    color: '#D0021B', barColor: '#D0021B', barW: 96,
+    boxBg: '#FDF0F0', boxBorder: '#F0AAAA',
+    accion: true,
+    accionTitulo: 'Tu cuerpo necesita acción ahora.',
+    accionTxt: 'Este nivel de señales no se revierte solo ni con fuerza de voluntad. Necesitás estructura real. Si no sabés por dónde empezar, podés agendar una <strong>llamada gratuita</strong> para conocer los primeros pasos con los principales hábitos para elevar la testosterona, según tu caso particular.'
+  }
+];
 
-  function toggle(el) {
-    const checked = el.classList.toggle('checked');
-    marcados += checked ? 1 : -1;
-    actualizar();
+function toggle(el, area) {
+  const checked = el.classList.toggle('on');
+  marcados += checked ? 1 : -1;
+  areaCount[area] += checked ? 1 : -1;
+  // Reset intensidad if unchecked
+  if (!checked) {
+    el.querySelectorAll('.intens-btn').forEach(b => b.className = 'intens-btn');
+  }
+  actualizar();
+}
+
+function setIntens(e, btn, nivel) {
+  e.stopPropagation();
+  const wrap = btn.closest('.intens-wrap');
+  wrap.querySelectorAll('.intens-btn').forEach(b => b.className = 'intens-btn');
+  btn.classList.add('sel-' + nivel);
+}
+
+function actualizar() {
+  // Progress
+  const pn = document.getElementById('progNums');
+  pn.innerHTML = marcados + ' <span>/ ' + TOTAL + '</span>';
+  pn.classList.remove('pulse');
+  void pn.offsetWidth;
+  pn.classList.add('pulse');
+  document.getElementById('progFill').style.width = (marcados / TOTAL * 100) + '%';
+
+  // Nivel
+  let niv = niveles[0];
+  for (const n of niveles) {
+    if (marcados >= n.min && marcados <= n.max) { niv = n; break; }
   }
 
-  function actualizar() {
-    // Count
-    const countEl = document.getElementById('count');
-    countEl.innerHTML = `${marcados} <span>/ ${TOTAL}</span>`;
-    countEl.classList.remove('pulse');
-    void countEl.offsetWidth;
-    countEl.classList.add('pulse');
+  // Update diag box
+  const box = document.getElementById('diagBox');
+  box.style.background = niv.boxBg;
+  box.style.borderColor = niv.boxBorder;
+  document.getElementById('diagDot').style.background = niv.color;
+  document.getElementById('diagNivelTxt').textContent = niv.txt;
+  document.getElementById('diagNivelTxt').style.color = niv.color;
+  document.getElementById('diagMsg').textContent = niv.msg;
 
-    // Progress bar
-    document.getElementById('progressBar').style.width = `${(marcados / TOTAL) * 100}%`;
+  const bar = document.getElementById('diagBar');
+  bar.style.width = niv.barW + '%';
+  bar.style.background = niv.barColor;
 
-    // Diagnóstico
-    let diag = diagnosticos[0];
-    for (const d of diagnosticos) {
-      if (marcados >= d.min && marcados <= d.max) { diag = d; break; }
-    }
-    const box = document.getElementById('diagBox');
-    box.style.background = diag.color;
-    box.style.borderColor = diag.border;
-    document.getElementById('diagMensaje').textContent = diag.mensaje;
-    document.getElementById('diagSub').textContent = diag.sub;
-
-    // CTA
-    const ctaWrap = document.getElementById('ctaWrap');
-    if (marcados >= 5) {
-      ctaWrap.classList.add('visible');
-      // Scroll suave al CTA la primera vez
-      if (!ctaWrap.dataset.shown) {
-        ctaWrap.dataset.shown = '1';
-        setTimeout(() => ctaWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 300);
-      }
-    } else {
-      ctaWrap.classList.remove('visible');
-      delete ctaWrap.dataset.shown;
-    }
+  // Áreas afectadas
+  const areasDiv = document.getElementById('diagAreas');
+  const tagsDiv = document.getElementById('areaTags');
+  if (marcados >= 3) {
+    areasDiv.classList.add('visible');
+    const sorted = Object.entries(areaCount)
+      .filter(([,v]) => v > 0)
+      .sort(([,a],[,b]) => b - a);
+    tagsDiv.innerHTML = sorted.map(([k, v]) => {
+      const cls = v >= 3 ? 'area-tag alta' : v >= 2 ? 'area-tag media' : 'area-tag';
+      return '<span class="' + cls + '">' + areaNames[k] + ' (' + v + ')</span>';
+    }).join('');
+  } else {
+    areasDiv.classList.remove('visible');
   }
+
+  // Acción
+  const accionWrap = document.getElementById('accionWrap');
+  if (niv.accion) {
+    accionWrap.classList.add('visible');
+    document.getElementById('accionTitulo').textContent = niv.accionTitulo;
+    document.getElementById('accionTxt').innerHTML = niv.accionTxt;
+    if (!accionWrap.dataset.shown) {
+      accionWrap.dataset.shown = '1';
+      setTimeout(() => accionWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 350);
+    }
+  } else {
+    accionWrap.classList.remove('visible');
+    delete accionWrap.dataset.shown;
+  }
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
